@@ -1,0 +1,41 @@
+require 'test_helper'
+
+class AllLayoutTest < ActionController::TestCase
+
+  test "..." do
+# Partials should render...:
+# A list of all tags, once:
+    assert_partial 'pictures/_all_tags', 1
+# The session buttons, messages, scripts, and styles, once:
+    %w[buttons messages scripts styles].each{|e|
+        assert_partial 'application/_'+e, 1}
+#-------------
+# Pretty html source:
+    check_pretty_html_source( %w[
+      Action\ content  All\ tags  Messages  Scripts  Session\ buttons  Styles
+    ], %w[
+      action-content  admin-pictures-index  all-tags  destroy  edit  messages
+      scripts  session-buttons  show  user-pictures-index 
+    ], %w[
+      /body></html  !DOCTYPE\ html  /head></body  html><head  script
+    script\ src="/javascripts/  style  /style  title
+    ])
+#-------------
+# Html body section should include...
+# One message div:
+    assert_descend @b, @dm
+# One buttons div:
+    assert_descend @b, @dsb
+# One action content div:
+    assert_descend @b, @dac
+  end
+
+  def setup(*args)
+    @b,@h,@ht,@s,@t = %w[body head html style title].map{|e| CssString.new e}
+    d=CssString.new 'div'
+    @ds,@dm,@dsb,@dat,@dac = %w[
+      scripts  messages  session-buttons  all-tags  action-content
+    ].map{|e| d.css_class e}
+  end
+
+end

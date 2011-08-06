@@ -1,0 +1,90 @@
+require 'test_helper'
+
+class CPartialTest < ActionController::TestCase
+
+  test "happy path should render..." do
+# Pretty html source:
+    check_pretty_html_source nil, 'thumbnail'
+# The right partial, once:
+    assert_partial
+# A single...:
+# Thumbnail div:
+    assert_select @dt, 1
+# Anchor, which should...:
+    assert_select @dt.child(@a), 1
+# Link to the right picture:
+
+    assert_single [@a,'href'], (filename_matcher 'two.png')
+# Open in a new window:
+    assert_single [@a,'target'], '_blank'
+# And...:
+# A single...:
+# Image, which should have the right...
+    assert_select @dt.child(@a,@i), 1
+# Thumbnail filename source:
+    assert_single [@i,'src'], (filename_matcher 'two-t.png')
+# Title as alt-text:
+    assert_single [@i,'alt'], 'two-title'
+  end
+  test "whether editing..." do
+    not_test = %w[ filename ]
+    automatic = %w[ id ] + %w[ cre  upd ].map{|e| e+'ated_at'}
+    attributes=Picture.column_names
+    (attributes-automatic-not_test).sort.each do |f|
+      s=@fd.css_class f
+      reset_flags f
+      si=s.child 'input'
+      assert_select si, false
+      if %w[ sequence weight ].include? f
+        assert_single s, ''
+      else
+# Should render a single, right value:
+        assert_single s, @field
+      end
+      setup(f){@editing=true}
+      if %w[ sequence ].include? f
+# Should render a single, right value:
+        assert_single s, @field
+        assert_select si, false
+      else
+        assert_single s, '' 
+        assert_single si, ''
+# Should render a single, right value in an editing box:
+        assert_single [si,'name'], "picture[#{f}]"
+        assert_single [si,'type'], 'text'
+        assert_single [si,'value'], @field
+      end
+    end
+  end
+
+  test "happy path should render..." do
+# Pretty html source:
+    check_pretty_html_source @s.pluralize.capitalize, nil, [@s,'/'+@s]
+
+# The right partial, once:
+    assert_partial
+# A styling suggestion for a list of all tags:
+    include? @d.css_class('tags').child @d.css_class('tag')
+
+# A gallery styling suggestion:
+##    include? @dp.descend @dib
+    include? @dp
+# And...
+# Shouldn't display a picture commit button:
+    s = @dp.child(CssString.new('form').css_class('edit_picture'),'input').
+        attribute('name', 'commit').descend "\n" + (display 'none')
+    s = s.gsub " \n", "\n"
+    include? s
+# Session buttons should be horizontal:
+    s = @d.css_class('session-buttons').child(@d,'form').css_class('button_to').
+        child(@d).descend "\n" + @di
+    s = s.gsub " \n", "\n"
+    include? s
+# Labels should be horizontal:
+    s = @d.css_class('label').descend "\n" + @dib
+    s = s.gsub " \n", "\n"
+    include? s
+# Include one style tag:
+    assert_single [@s,'class'], @s+'s'
+    assert_single [@s,'type' ], 'text/css'
+  end
