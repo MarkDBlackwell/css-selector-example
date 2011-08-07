@@ -1,3 +1,5 @@
+#@+leo-ver=5-thin
+#@+node:georgesawyer.20110806134147.1259: * @file example-d.rb
 require 'test_helper'
 
 class ScriptsApplicationPartialTest < ActionController::TestCase
@@ -14,12 +16,7 @@ class ScriptsApplicationPartialTest < ActionController::TestCase
   end
 
   test "happy path should render..." do
-# Pretty html source:
-    check_pretty_html_source 'Scripts', 'scripts', 'script'
-# The right partial, once:
-    assert_partial
-# And...
-# Include one scripts div which should include six...:
+# One scripts div which should include six...:
     assert_select @ds, 1 do
 # Tags:
       assert_select @ds.descend('*'), 6
@@ -38,6 +35,5 @@ class ScriptsApplicationPartialTest < ActionController::TestCase
     @ds=@d.css_class 'scripts'
     @dss=@ds.descend 'script'
   end
-
 end
-
+#@-leo

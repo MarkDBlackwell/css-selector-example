@@ -1,13 +1,8 @@
+#@+leo-ver=5-thin
+#@+node:georgesawyer.20110806134147.1263: * @file example-f.rb
 require 'test_helper'
 
-class ReviewGroupSessionsPartialTest < ActionController::TestCase
-
-  test "if message is empty" do
-    @group.message=''
-    render_partial
-# Should render the empty message:
-    assert_single @gm, ''
-  end
+class ASessionsPartialTest < ActionController::TestCase
 
   test "happy path should render the right..." do
     happy_path
@@ -35,8 +30,6 @@ class ReviewGroupSessionsPartialTest < ActionController::TestCase
   end
 
   def setup
-    c=:sessions
-    @controller.default_url_options={:controller=>c}
     @group=Struct.new(:list,:message).new  %w[abc def], 'something'
     @special='(none)'
     @a,@d = %w[a div].map{|e| CssString.new e}
@@ -44,3 +37,5 @@ class ReviewGroupSessionsPartialTest < ActionController::TestCase
     @gl,@gm=[@dl,@dm].map{|e| @dg.child e}
     @da,@ga=[@dl,@gl].map{|e| e.child @a}
   end
+end
+#@-leo
