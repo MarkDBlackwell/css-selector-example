@@ -11,10 +11,13 @@
 <find_panel_settings/>
 <vnodes>
 <v t="georgesawyer.20110806135445.1324" a="E"><vh>CSS selector objects</vh>
-<v t="georgesawyer.20110806135445.1325"><vh>presentation</vh>
+<v t="georgesawyer.20110807043147.1556" a="E"><vh>work on</vh>
+<v t="georgesawyer.20110806135445.1325" a="E"><vh>presentation</vh>
 <v t="georgesawyer.20110806135445.1326"><vh>object</vh></v>
 <v t="georgesawyer.20110806135445.1327"><vh>method</vh></v>
 </v>
+</v>
+<v t="georgesawyer.20110807043147.1557" a="E"><vh>code</vh>
 <v t="georgesawyer.20110806135445.1335" a="E"><vh>module</vh>
 <v t="georgesawyer.20110806135445.1334"><vh>@file css_selector.rb</vh></v>
 </v>
@@ -30,6 +33,7 @@
 <v t="georgesawyer.20110806134147.1263"><vh>@file example-f.rb</vh></v>
 </v>
 </v>
+</v>
 </vnodes>
 <tnodes>
 <t tx="georgesawyer.20110806135445.1324"></t>
@@ -39,5 +43,7 @@
 <t tx="georgesawyer.20110806135445.1328"></t>
 <t tx="georgesawyer.20110806135445.1330"></t>
 <t tx="georgesawyer.20110806135445.1335"></t>
+<t tx="georgesawyer.20110807043147.1556"></t>
+<t tx="georgesawyer.20110807043147.1557"></t>
 </tnodes>
 </leo_file>
