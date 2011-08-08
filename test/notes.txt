@@ -1,0 +1,110 @@
+Let's say, for a given web page, you are writing some tests.
+
+And suppose you want to test whether the page contains a single DIV of CSS class, 'only'.
+
+And, you want to know whether the DIV or page contains a single FORM of CSS class, 'good-form'.
+
+And further, you want to know whether that FORM or page contains (among other things) a single INPUT of CSS class, 'my-input'.
+
+And whether that INPUT has CSS attribute, 'type=text'.
+
+A CSS selector useful for finding that on a web page would be:
+
+  div.only > form.good-form > input.my-input[type=text]
+
+Right?
+
+Maybe specifying (in your test) descendents instead of children would be good for test flexibility, for instance allowing later intervening DIV's. With this difference, a new CSS selector would be:
+
+  div.only &nbsp; form.good-form &nbsp; input.my-input[type=text]
+
+How would one most like to specify these selectors, ideally and speculatively? Even better than the above CSS selector strings, in Ruby would be ... what?
+
+Well, it might be nice if some Ruby code for DIV's could work just like this:
+
+A. HTML elements
+
+ &nbsp; D.class 'only'
+
+Unfortunately, this method, 'class' would clobber Object#class, and interfere elsewhere probably with some essential Ruby functionality of our application class.
+
+Instead, as a workaround, we could rename the method to something like this:
+
+ &nbsp; D.css_class 'only'
+
+B. HTML Attributes
+
+Also, a web page might carry, in addition to one INPUT element containing all of the desired attributes, another INPUT element containing fewer of them, or indeed another kind of INPUT element.
+
+Thus, obviously it is good to test:
+
+o The total number of INPUT's, and
+o The presence of each desired INPUT, simultaneously with all its desired attributes.
+
+In light of this, it would be nice if there were a way for one easy, brief method invocation to assert the unique presence of exactly one INPUT, plus its unique presence carrying a specified set of attributes.
+
+Perhaps it would be useful somehow to check the attributes one at a time; I don't know.
+
+The same probably would apply to any other kind of HTML element with attributes on a web page.
+
+It would be good to invoke such a method in this way:
+
+ &nbsp; attribute 'type', 'text', 'value', 'your name here'
+
+or, for unpaired attributes:
+
+ &nbsp; attribute 'hidden'
+
+Carrying this idea further, how could these semantics really work? Here's a fuller example:
+
+C. An implementation
+
+<pre>
+# A Fuller Example of Web Page Testing, Using CSS Selector Objects:
+
+module CssSelectorConstants; D,F,I = %w[ div form input ].map{|e| CssString e} end
+
+class SomeTestClass
+   extend CssSelectorConstants
+
+   def test_web_page
+    d_o = D.             css_class 'only'
+    fg  = d_o.descend(F).css_class 'good-form'
+    im  = fg. descend(I).css_class 'my-input'
+
+    a_t = im.attribute 'type', 'text'
+    atv = im.attribute 'type', 'text', 'value', 'your name here'
+    av  = im.attribute                 'value', 'your name here'
+
+# There should be exactly one DIV, 'div.only':
+    assert_select d_o, 1 do
+# And within that, exactly one FORM, 'form.good-form':
+      assert_select fg, 1 do
+#                                                                      I.e., exactly one:
+#                                                                            div.only   form.good-form
+# And within that, exactly one INPUT, 'input.my-input':
+        assert_select im, 1
+#                                                                      I.e., exactly one:
+#                                                                            div.only   form.good-form   input.my-input
+# And exactly one INPUT, 'input.my-input[type=text]':
+        assert_select a_t, 1
+#                                                                      I.e., exactly one:
+#                                                                            div.only   form.good-form   input.my-input
+#                                                                            [type=text]
+# And exactly one INPUT, 'input.my-input[value=your name here]':
+        assert_select av, 1
+#                                                                      I.e., exactly one:
+#                                                                            div.only   form.good-form   input.my-input
+#                                                                            [value=your name here]
+# And exactly one INPUT, 'input.my-input[type=text,value=your name here]':
+        assert_select atv, 1
+#                                                                      I.e., exactly one:
+#                                                                            div.only   form.good-form   input.my-input
+#                                                                            [type=text,value=your name here]
+      end #form
+    end #div
+   end #def
+end #class
+</pre>
+
+Copyright (c) 2011 Mark D. Blackwell.
