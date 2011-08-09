@@ -1,5 +1,8 @@
 <!--All tags-->
-<%= content_tag :div, :class => 'all-tags' do -%>
-<%=   render :partial => 'simplest/tags', :locals => {:tags => (@all_tags.unshift 'all')} if @all_tags.present? -%>
-<%  end -%>
+<div class="all-tags">
+<div class="tags">
+<div class="tag"><a href="/" title="all tags">all</a></div>
+<div class="tag" id="tag_980190995"><a href="/">one</a></div>
+<div class="tag" id="tag_980190996"><a href="/">two</a></div>
+</div></div>
 
