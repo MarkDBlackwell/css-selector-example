@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class PlusTest < ActiveSupport::TestCase
+class CssStringTest < ActiveSupport::TestCase
 
-  test "..." do
+  test "+" do
     assert_equal 'a + b', CssString.new('a')+'b'
   end
 
