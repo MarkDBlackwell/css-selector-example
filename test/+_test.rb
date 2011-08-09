@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class PlusTest < ActiveSupport::TestCase
 
   test "..." do
