@@ -1,0 +1,2 @@
+module SimplestHelper
+end
