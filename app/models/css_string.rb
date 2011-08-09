@@ -3,15 +3,24 @@
 # CSS Selector String
 class CssString < String
 
-  def +(      value) CssString.new   [self, value].to_s       end
-  def adjacent(  *a) CssString.new a.unshift(self).join ' + ' end
-  def child(     *a) CssString.new a.unshift(self).join ' > ' end
-  def css_class( *a) CssString.new a.unshift(self).join  '.'  end
-  def css_id(    *a) CssString.new a.unshift(self).join  '#'  end
-  def descend(   *a) CssString.new a.unshift(self).join  ' '  end
-  def first(     *a) self.child(*a) + ':first-child'          end
-  def last(      *a) self.child(*a) +  ':last-child'          end
-  def not(       *a) s=':not('; self+s+(a.join ')'+s)  +')'   end
+  def adjacent(  *a) CssString.new a.flatten.unshift(self).join ' + ' end
+  def child(     *a) CssString.new a.flatten.unshift(self).join ' > ' end
+  def css_class( *a) CssString.new a.flatten.unshift(self).join  '.'  end
+  def css_id(    *a) CssString.new a.flatten.unshift(self).join  '#'  end
+  def descend(   *a) CssString.new a.flatten.unshift(self).join  ' '  end
+  def first(     *a) self.child(*a) + ':first-child'                  end
+  def last(      *a) self.child(*a) +  ':last-child'                  end
+
+  def + *a
+    return self if guard *a
+    CssString.new [self, a].to_s
+  end
+
+  def not *a
+    return self if guard *a
+    s = ':not('
+    self + s + (a.flatten.join ')' + s) + ')'
+  end
 
   def attribute *a
     r = self.clone
@@ -22,6 +31,15 @@ class CssString < String
       r << ']'
     end
     CssString.new r
+  end
+
+#-------------
+  private
+
+  def guard *a
+    return true if a.blank?
+    a = a.flatten
+    a.blank? || ['']==a
   end
 
 end
