@@ -2,76 +2,56 @@ require 'test_helper'
 
 class CssStringTest < ActiveSupport::TestCase
 
+  test "common" do
+    padded = [ ?> , ?+       ]. map{ |e| " #{e.chr} "}
+    bare   = [ ?. , ?# , ?\s ]. map{ |e|     e.chr   }
+    methods = %w[ child  adjacent    css_class  css_id  descend ]
+    padded.concat(bare).zip(methods).each{|s,m| two_ways s, m.to_sym}
+  end
+
   test "+" do
-    run_joined '', big.map{|e| CssString.new('v').+(*e)}
-    run_joined '', big.map{|e| CssString.new('v') + e}
+    compare '', big.map{|e| CssString.new('v').+(*e) } # Keep without sugar.
+    compare '', big.map{|e| CssString.new('v') +  e  }
   end
 
-  test "adjacent" do
-    run_joined ' + ', big.map{|e| CssString.new('v').adjacent *e}
-    run_joined ' + ', big.map{|e| CssString.new('v').adjacent  e}
-  end
-
-  test "child" do
-    run_joined ' > ', big.map{|e| CssString.new('v').child *e}
-    run_joined ' > ', big.map{|e| CssString.new('v').child  e}
-  end
-
-  test "css_class" do
-    run_joined '.', big.map{|e| CssString.new('v').css_class *e}
-    run_joined '.', big.map{|e| CssString.new('v').css_class  e}
-  end
-
-  test "css_id" do
-    run_joined '#', big.map{|e| CssString.new('v').css_id *e}
-    run_joined '#', big.map{|e| CssString.new('v').css_id  e}
-  end
-
-  test "descend" do
-    run_joined ' ', big.map{|e| CssString.new('v').descend *e}
-    run_joined ' ', big.map{|e| CssString.new('v').descend  e}
-  end
-
-  test "first" do
-    s = ':first-child'
-    run_joined ' > ', big.map{|e| CssString.new('v').first *e}, s
-    run_joined ' > ', big.map{|e| CssString.new('v').first  e}, s
-  end
-
-  test "last" do
-    s = ':last-child'
-    run_joined ' > ', big.map{|e| CssString.new('v').last *e}, s
-    run_joined ' > ', big.map{|e| CssString.new('v').last  e}, s
+  test "ends" do
+    %w[ first last ].each{|e| two_ways ' > ', e.to_sym, ":#{e}-child"}
   end
 
   test "not" do
-    assert_equal 'v',                      (CssString.new('v').not [   ])
-    assert_equal 'v',                      (CssString.new('v').not  ''  )
-    assert_equal 'v',                      (CssString.new('v').not ['' ])
-    assert_equal 'v:not(a)',               (CssString.new('v').not ['a'])
-    assert_equal 'v:not(a)',               (CssString.new('v').not  'a' )
-    assert_equal 'v:not(a):not(b)',        (CssString.new('v').not  %w[a b])
-    assert_equal 'v:not(a):not(b)',        (CssString.new('v').not *%w[a b])
-    assert_equal 'v:not(a):not(b):not(c)', (CssString.new('v').not  %w[a b c])
-    assert_equal 'v:not(a):not(b):not(c)', (CssString.new('v').not *%w[a b c])
+# An empty array shouldn't alter it.
+    assert_equal 'v', (CssString.new('v').not [])
+# Increasing strings...
+    a = %w[  v  v:not(a)  v:not(a):not(b)  v:not(a):not(b):not(c)  ]
+# With an increasing list...
+    b = %w[  a  b  c ]
+    ((1..3).map{|n| b.take n}.unshift ['']).zip(a).each do |z,s|
+# Should match...
+# As arguments.
+      assert_equal s, (CssString.new('v').not *z)
+# As a passed array.
+      assert_equal s, (CssString.new('v').not  z)
+    end
+  end
+
+  test "attribute" do
+    assert_equal 'v', (CssString.new('v').attribute)
+    a = %w[ a b c d ]
+    arrays = (1..4).map{|n| a.take n}
+    strings = %w@  v[a]  v[a=b]  v[a=b][c]  v[a=b][c=d]  @
+    strings.zip(arrays).each{|s,a| two_ways_attribute s, a}
   end
 
 #-------------
   private
 
-  def args
-    (0...number_of_arguments).map{|i|(?a + i).to_s}
-  end
+  def bigger; sliding_take 1, (args.unshift 'v') end
+  def big   ; sliding_take 0, args               end
 
-  def big
-    sliding_take 0, args
-  end
+  def args; (0...number_of_arguments).map{|i|(?a + i).to_s} end
+  def number_of_arguments; 4 end
 
-  def bigger
-    sliding_take 1, (args.unshift 'v')
-  end
-
-  def run_joined joiner, objects, append=''
+  def compare joiner, objects, append=''
     bigger.map{|e|(e.join joiner).concat append}.zip(objects).each do |s,o|
 # The result...
 # Should be a CssString:
@@ -81,12 +61,18 @@ class CssStringTest < ActiveSupport::TestCase
     end
   end
 
-  def number_of_arguments
-    4
-  end
-
   def sliding_take first, a
     (first...first + number_of_arguments).map{|n| a.take n}
+  end
+
+  def two_ways joiner, method, append=''
+    compare joiner, big.map{|e| CssString.new('v').send method, *e}, append
+    compare joiner, big.map{|e| CssString.new('v').send method,  e}, append
+  end
+
+  def two_ways_attribute s, a
+    assert_equal s, (CssString.new('v').attribute *a)
+    assert_equal s, (CssString.new('v').attribute  a)
   end
 
 end
