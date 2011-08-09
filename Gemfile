@@ -7,6 +7,13 @@ gem 'rails', '3.0.9'
 
 gem 'sqlite3'
 
+# mdb August 9, 2011:
+# 'heroku rake db:migrate' gave:
+# 'uninitialized constant Rake:DSL'
+# Per https://twitter.com/dhh/statuses/71966528744071169?_escaped_fragment_=/dhh/status/71966528744071169#!/dhh/status/71966528744071169
+# , fix with:
+gem 'rake', '0.8.7'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
