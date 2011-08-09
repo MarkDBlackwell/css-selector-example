@@ -2,19 +2,19 @@
 <!--Session buttons-->
 <%= content_tag 'div', :class => 'session-buttons' do %>
 <%    unless @suppress_buttons -%>
-<%=     button 'files', 'edit', :edit, :sessions -%><%= %>
-<%=     button 'database problems', 'show', :show, :sessions -%><%= %>
+<%=     button 'files', 'edit', :index, :simplest -%><%= %>
+<%=     button 'database problems', 'show', :index, :simplest -%><%= %>
 <%=     button 'admin pictures', 'admin-pictures-index', :index,
-            :admin_pictures -%><%= %>
+            :simplest -%><%= %>
 <%=     content_tag 'div', :class => 'user-pictures-index' do -%>
 <%=       content_tag 'form', :method => :get, :action => url_for(
-              :controller => :pictures, :action => :index),
+              :controller => :simplest, :action => :index),
               :target => '_blank', :class => 'button_to' do -%>
 <%=         content_tag 'div' do -%>
 <%=           tag 'input', :type => 'submit', :value => 'user pictures' -%>
 <%          end -%>
 <%        end -%>
 <%      end -%><%= %>
-<%=     button 'log out', 'destroy', :destroy, :sessions, :delete -%>
+<%=     button 'log out', 'destroy', :index, :simplest, :delete -%>
 <%    end -%>
 <%  end -%><%= %>
