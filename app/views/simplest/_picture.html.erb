@@ -1,38 +1,25 @@
-<%# %%vi%%part%%pic%%pic %%pic%%fie %%pic%%th %%adm%%si -%><%= %>
-<%= div_for picture do -%><%= %>
-<%    fm=@editing ? :form_for : :fields_for -%>
-<%=   send(fm, picture, :url => {:controller => 'admin_pictures',
-          :action => :update, :id => picture.id},
+<%= div_for picture do -%>
+<%    fm = :fields_for -%>
+<%=   send(fm, picture, :url => {:controller => 'simplest',
+          :action => :index, :id => 1},
           :html => {:method => :put}) do |f| -%>
-<%      begin -%><%= %>
-<%=       submit_tag -%><%= %>
-<%      end if @editing -%>
-<%=     render :partial => 'pictures/thumbnail', :locals => {:picture =>
+<%=     render :partial => 'simplest/thumbnail', :locals => {:picture =>
             picture} -%>
 <%      [:filename, :sequence, :title, :description, :year, :weight].
-            each do |field| -%><%= %>
-<%=         render :partial => 'pictures/field', :locals => {:record => picture,
+            each do |field| -%>
+<%=         render :partial => 'simplest/field', :locals => {:record => picture,
                 :field => field} -%>
-<%      end -%><%= %>
-<%      unless @editing -%>
-<%=       render :partial => 'pictures/tags', :locals => {:tags => picture.
-              tags} -%>
-<%      else -%>
-<%=       render :partial => 'pictures/field', :locals => {:record =>
-              Struct.new(:tags).new(picture.tags.map(&:name).join ' '),
-              :field => :tags} -%>
 <%      end -%>
-<%    end -%><%= %>
+<%=     render :partial => 'simplest/tags', :locals => {:tags => picture.
+            tags} -%>
+<%    end -%>
 <%=   content_tag :div, :class => 'edit' do -%>
-<%##= TODO: alert me when target='_blank' gets into form instead of erroneously placed in input:
-button_to 'edit', {:controller => :admin_pictures, :action => :edit, :id =>
-picture.id}, :method => :get, :tabindex => '1', :target => '_blank' -%>
-<%=     content_tag :form, :action => url_for(:controller => :admin_pictures,
-            :action => :edit, :id => picture.id), :class => :button_to,
+<%=     content_tag :form, :action => url_for(:controller => :simplest,
+            :action => :index, :id => 1), :class => :button_to,
             :method => :get, :target => :_blank  do -%>
 <%=       content_tag :div do -%>
 <%=         tag :input, :tabindex => '1', :type => :submit, :value => :edit -%>
 <%        end -%>
 <%      end -%>
-<%    end if @edit_allowed -%>
+<%    end -%>
 <%  end # Picture div. -%>
