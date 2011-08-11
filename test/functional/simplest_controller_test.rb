@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SimplestControllerTest < ActionController::TestCase
 
-  include CssSelector
+  include CssSelector2
 
   test "scripts div..." do
 # Should include certain script tags in order:
