@@ -12,4 +12,4 @@ For background information:
 
 <http://markdblackwell.blogspot.com/2011/08/css-selector-objects-and-methods-for.html>
 
-Copyright (c) 2011 Mark D. Blackwell. See <MIT-LICENSE> for details.
+Copyright (c) 2011 Mark D. Blackwell. See [MIT-LICENSE](MIT-LICENSE) for details.
