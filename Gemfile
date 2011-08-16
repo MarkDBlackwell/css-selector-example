@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '= 3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-gem 'mocha'
+gem 'sqlite3', '= 1.3.4'
+gem 'mocha', '= 0.9.8'
 
 # mdb August 9, 2011:
 # 'heroku rake db:migrate' gave:
@@ -16,6 +16,7 @@ gem 'mocha'
 gem 'rake', '0.8.7'
 
 # Use unicorn as the web server
+
 # gem 'unicorn'
 
 # Deploy with Capistrano
