@@ -1,8 +1,9 @@
+*~
 .bundle
-copy*
 Copy*
+copy*
 db/*.sqlite3
 log/*.log
-out/*
+out/
 tmp/
-*~
+vendor/plugins/css_selector/
