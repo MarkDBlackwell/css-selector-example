@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CssSelector</title>
+        <!--Scripts-->
+<div class="scripts">
+<link href="/stylesheets/all.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="/javascripts/prototype.js?1312906125" type="text/javascript"></script>
+<script src="/javascripts/effects.js?1312906125" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js?1312906125" type="text/javascript"></script>
+<script src="/javascripts/controls.js?1312906125" type="text/javascript"></script>
+<script src="/javascripts/rails.js?1312906125" type="text/javascript"></script>
+<script src="/javascripts/application.js?1312906125" type="text/javascript"></script>
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="mXCQPHyj324sBCbdR3/9Ar7/uyBpVNG8ME555NDIFjk="/></div>
+          <!--Styles-->
+<style class="styles" type="text/css">
+/* Anchors. */
+a:link, a:visited
+{text-decoration: none}
+
+/* Session buttons. */
+html > body > div.session-buttons > div ,
+html > body > div.session-buttons > div > form.button_to ,
+html > body > div.session-buttons > div > form.button_to > div
+{display: inline}
+
+/* Tags at top. */
+html > body > div.all-tags > div.tags > div.tag
+{display: inline; margin: 1px}
+
+/* Tags within pictures. */
+html > body > div.action-content > div.gallery > div.picture > div.tags > div.tag, /* Multiple. */
+html > body > div.action-content >               div.picture > div.tags > div.tag /* Single. */
+{display: inline; margin: 1px}
+
+/* Multiple pictures. */
+html > body > div.action-content > div.gallery > div.picture
+{display: inline-block; text-align: center; vertical-align: top; margin: 1px}
+
+/* Picture images. */
+div.thumbnail > a > img
+{border: none}
+
+/* Picture descriptions. */
+html > body > div.action-content > div.gallery > div.picture > div.field > div.description, /* Multiple. */
+html > body > div.action-content >               div.picture > div.field > div.description /* Single. */
+{text-transform: lowercase}
+
+/* Commit buttons (while editing pictures). */
+html > body > div.action-content > div.picture > form.edit_picture > input[name=commit]
+{display: none}
+
+/* Labels (for picture fields). */
+html > body > div.action-content > div.picture > form.edit_picture > div.field > div > div.label
+{display: inline-block}
+</style></head>
+<body>
+        <!--Messages-->
+<div class="messages">
+<div class="notice" id="notice">some notice</div>
+<div class="notice error" id="error">some error message</div></div>
+        <!--Session buttons-->
+<div class="session-buttons">
+<div class="edit"><form method="get" action=""  class="button_to"><div><input type="submit" value="files" /></div></form></div>
+<div class="show"><form method="get" action=""  class="button_to"><div><input type="submit" value="database problems" /></div></form></div>
+<div class="admin-pictures-index"><form method="get" action=""  class="button_to"><div><input type="submit" value="admin pictures" /></div></form></div>
+<div class="user-pictures-index"><form action="" class="button_to" method="get" target="_blank"><div><input type="submit" value="user pictures" /></div></form></div>
+<div class="destroy"><form method="post" action=""  class="button_to"><div><input name="_method" type="hidden" value="delete" /><input type="submit" value="log out" /><input name="authenticity_token" type="hidden" value="mXCQPHyj324sBCbdR3/9Ar7/uyBpVNG8ME555NDIFjk=" /></div></form></div></div>
+        <!--All tags-->
+<div class="all-tags">
+<div class="tags">
+<div class="tag"><a href="" title="all tags">all</a></div>
+<div class="tag" id="tag_980190995"><a href="">one</a></div>
+<div class="tag" id="tag_980190996"><a href="">two</a></div></div></div>
+        <!--Action content-->
+<div class="action-content">
+  <!--Pictures-->
+<div class="gallery">
+<div class="picture" id="picture_980190990">
+<div class="thumbnail"><a href="images/gallery/figs-roses-apples.jpg" target="_blank"><img alt="Figs, roses &amp; apples" src="images/gallery/figs-roses-apples-t.jpg" /></a></div>
+<div class="field"><div class="filename"></div></div>
+<div class="field"><div class="sequence"></div></div>
+<div class="field"><div class="title">Figs, roses & apples</div></div>
+<div class="field"><div class="description">I painted these figs</div></div>
+<div class="field"><div class="year">2011</div></div>
+<div class="field"><div class="weight"></div></div>
+<div class="tags">
+<div class="tag" id="tag_980190996"><a href="">two</a></div></div></div>
+
+<div class="picture" id="picture_980190991">
+<div class="thumbnail"><a href="images/gallery/homer2.jpg" target="_blank"><img alt="Bust of Homer2" src="images/gallery/homer2-t.jpg" /></a></div>
+<div class="field"><div class="filename"></div></div>
+<div class="field"><div class="sequence"></div></div>
+<div class="field"><div class="title">Bust of Homer2</div></div>
+<div class="field"><div class="description">My painting of the bust</div></div>
+<div class="field"><div class="year">2011</div></div>
+<div class="field"><div class="weight"></div></div>
+<div class="tags">
+<div class="tag" id="tag_980190995"><a href="">one</a></div></div></div></div></div>
+</body></html>
