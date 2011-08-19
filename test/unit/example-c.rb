@@ -1,8 +1,6 @@
-#@+leo-ver=5-thin
-#@+node:georgesawyer.20110806134147.1257: * @file example-c.rb
 require 'test_helper'
 
-class CPartialTest < ActionController::TestCase
+class CPartialTest < ActionView::TestCase
 
   test "whether editing..." do
     f='something'
@@ -41,4 +39,3 @@ class CPartialTest < ActionController::TestCase
     assert_single [@s,'type' ], 'text/css'
   end
 end
-#@-leo

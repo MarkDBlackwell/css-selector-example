@@ -6,4 +6,4 @@ db/*.sqlite3
 log/*.log
 out/
 tmp/
-vendor/plugins/css_selector/
+vendor/plugins/css-selector/

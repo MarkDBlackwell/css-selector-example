@@ -1,8 +1,6 @@
-#@+leo-ver=5-thin
-#@+node:georgesawyer.20110806134147.1259: * @file example-d.rb
 require 'test_helper'
 
-class ScriptsApplicationPartialTest < ActionController::TestCase
+class ScriptsApplicationPartialTest < ActionView::TestCase
 
   test "scripts div..." do
 # Should include certain script tags in order:
@@ -36,4 +34,3 @@ class ScriptsApplicationPartialTest < ActionController::TestCase
     @dss=@ds.descend 'script'
   end
 end
-#@-leo

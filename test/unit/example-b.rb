@@ -1,8 +1,6 @@
-#@+leo-ver=5-thin
-#@+node:georgesawyer.20110806134147.1255: * @file example-b.rb
 require 'test_helper'
 
-class ButtonsPartialTest < ActionController::TestCase
+class ButtonsPartialTest < ActionView::TestCase
 
   test "happy path should render..." do
 # A single session-buttons div:
@@ -48,4 +46,3 @@ class ButtonsPartialTest < ActionController::TestCase
     @f,@i = %w[  form  input  ].map{|e| CssString.new e}
   end
 end
-#@-leo

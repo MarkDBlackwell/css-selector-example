@@ -1,8 +1,8 @@
-#@+leo-ver=5-thin
-#@+node:georgesawyer.20110806134147.1247: * @file example-a.rb
 require 'test_helper'
 
 class HtmlTest < ActionController::TestCase
+
+  tests ApplicationController
 
   test "..." do
 # Html body section should include exactly...
@@ -21,4 +21,3 @@ class HtmlTest < ActionController::TestCase
         ].map{|e| d.css_class e}
   end
 end
-#@-leo

@@ -1,8 +1,6 @@
-#@+leo-ver=5-thin
-#@+node:georgesawyer.20110806134147.1263: * @file example-f.rb
 require 'test_helper'
 
-class ASessionsPartialTest < ActionController::TestCase
+class ASessionsPartialTest < ActionView::TestCase
 
   test "happy path should render the right..." do
     happy_path
@@ -38,4 +36,3 @@ class ASessionsPartialTest < ActionController::TestCase
     @da,@ga=[@dl,@gl].map{|e| e.child @a}
   end
 end
-#@-leo

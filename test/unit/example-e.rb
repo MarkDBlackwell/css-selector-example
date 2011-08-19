@@ -1,8 +1,6 @@
-#@+leo-ver=5-thin
-#@+node:georgesawyer.20110806134147.1261: * @file example-e.rb
 require 'test_helper'
 
-class BSessionsPartialTest < ActionController::TestCase
+class BSessionsPartialTest < ActionView::TestCase
 
   test "happy path should render..." do
 # A single...:
@@ -30,4 +28,3 @@ class BSessionsPartialTest < ActionController::TestCase
     @da=@d.css_class 'approve'
   end
 end
-#@-leo

@@ -1,4 +1,4 @@
-Currently, this is an example showing use of the css-selector plugin.
+This is an example showing use of the plugin, css-selector.
 
 See <http://css-selector.heroku.com/>.
 
