@@ -3,16 +3,17 @@
 <head>
 <title>CssSelector</title>
         <!--Scripts-->
-<div class="scripts">
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="fake"/>
 <link href="/stylesheets/all.css" media="screen" rel="stylesheet" type="text/css" />
+<div class="scripts">
 <script src="/javascripts/prototype.js?1312906125" type="text/javascript"></script>
 <script src="/javascripts/effects.js?1312906125" type="text/javascript"></script>
 <script src="/javascripts/dragdrop.js?1312906125" type="text/javascript"></script>
 <script src="/javascripts/controls.js?1312906125" type="text/javascript"></script>
 <script src="/javascripts/rails.js?1312906125" type="text/javascript"></script>
 <script src="/javascripts/application.js?1312906125" type="text/javascript"></script>
-<meta name="csrf-param" content="authenticity_token"/>
-<meta name="csrf-token" content="mXCQPHyj324sBCbdR3/9Ar7/uyBpVNG8ME555NDIFjk="/></div>
+</div>
           <!--Styles-->
 <style class="styles" type="text/css">
 /* Anchors. */
@@ -62,11 +63,11 @@ html > body > div.action-content > div.picture > form.edit_picture > div.field >
 <div class="notice error" id="error">some error message</div></div>
         <!--Session buttons-->
 <div class="session-buttons">
-<div class="edit"><form method="get" action=""  class="button_to"><div><input type="submit" value="files" /></div></form></div>
-<div class="show"><form method="get" action=""  class="button_to"><div><input type="submit" value="database problems" /></div></form></div>
-<div class="admin-pictures-index"><form method="get" action=""  class="button_to"><div><input type="submit" value="admin pictures" /></div></form></div>
-<div class="user-pictures-index"><form action="" class="button_to" method="get" target="_blank"><div><input type="submit" value="user pictures" /></div></form></div>
-<div class="destroy"><form method="post" action=""  class="button_to"><div><input name="_method" type="hidden" value="delete" /><input type="submit" value="log out" /><input name="authenticity_token" type="hidden" value="mXCQPHyj324sBCbdR3/9Ar7/uyBpVNG8ME555NDIFjk=" /></div></form></div></div>
+<div class="edit"><form method="get" action="/edit" class="button_to"><div><input type="submit" value="files" /></div></form></div>
+<div class="show"><form method="get" action="/show" class="button_to"><div><input type="submit" value="problems" /></div></form></div>
+<div class="admin-item-index"><form method="get" action="/admin" class="button_to"><div><input type="submit" value="admin-items" /></div></form></div>
+<div class="user-item-index"><form action="/user" class="button_to" method="get" target="_blank"><div><input type="submit" value="user-items" /></div></form></div>
+<div class="destroy"><form method="post" action="/destroy" class="button_to"><div><input name="_method" type="hidden" value="delete" /><input type="submit" value="logout" /><input name="authenticity_token" type="hidden" value="fake" /></div></form></div></div>
         <!--All tags-->
 <div class="all-tags">
 <div class="tags">

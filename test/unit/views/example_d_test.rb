@@ -1,11 +1,10 @@
 require 'test_helper'
 
-class ScriptsApplicationPartialTest < ActionView::TestCase
+class ScriptsApplicationPartialTest < SharedViewTest
 
   test "scripts div..." do
 # Should include certain script tags in order:
     assert_select @dss, 6
-
     %w[ prototype effects dragdrop controls rails application].
         each_with_index do |e,i|
       r=static_asset_matcher base_uri.join *['javascripts',"#{e}.js"]
@@ -27,10 +26,14 @@ class ScriptsApplicationPartialTest < ActionView::TestCase
     assert_select @ds.descend('*').not('script'), false
   end
 
+#-------------
+  private
+
   def setup
-    render_partial 'application/scripts'
+    render_layout
     @d=CssString.new 'div'
     @ds=@d.css_class 'scripts'
     @dss=@ds.descend 'script'
   end
+
 end

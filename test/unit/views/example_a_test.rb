@@ -1,8 +1,6 @@
 require 'test_helper'
 
-class HtmlTest < ActionController::TestCase
-
-  tests ApplicationController
+class HtmlTest < SharedViewTest
 
   test "..." do
 # Html body section should include exactly...
@@ -14,10 +12,15 @@ class HtmlTest < ActionController::TestCase
     assert_descend @b, @dac
   end
 
+#-------------
+  private
+
   def setup(*args)
+    render_layout
     @b = CssString.new 'body'
     d  = CssString.new 'div'
     @dm,@dsb,@dac = %w[  messages  session-buttons  action-content
         ].map{|e| d.css_class e}
   end
+
 end

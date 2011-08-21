@@ -1,8 +1,6 @@
 require 'test_helper'
 
-class SimplestControllerTest < ActionController::TestCase
-
-  include CssStringConstants
+class SimplestTest < SharedViewTest
 
   test "scripts div..." do
 # Should include certain script tags in order:
@@ -27,11 +25,11 @@ class SimplestControllerTest < ActionController::TestCase
   private
 
   def setup
+    render_layout
     @ds=DIV.css_class 'scripts'
     @dss=@ds.descend 'script'
     @dsb=DIV.css_class 'session-buttons'
     @dd=@dsb.descend DIV
-    get :index
   end
 
 end
