@@ -16,7 +16,7 @@ class SharedViewTest < ActionView::TestCase
     render :file => (Rails.root.join *%w[public app])
   end
 
-  def static_asset_matcher(s)
+  def static_asset_matcher s
     e=Regexp.escape base_uri.join s
     Regexp.new %r"\A#{e}\?\d*\z"
   end
