@@ -4,7 +4,7 @@ ruby '1.9.3'
 gem 'bundler', '>=1.3.0.pre.2'
 # mdb August 9, 2011: 'heroku rake db:migrate' gave: 'uninitialized constant Rake:DSL'. Fix with: gem 'rake', '0.8.7' per:
 # https://twitter.com/dhh/statuses/71966528744071169?_escaped_fragment_=/dhh/status/71966528744071169#!/dhh/status/71966528744071169
-gem 'rake', '0.8.7'
+gem 'rake', '10.0.3'
 gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
