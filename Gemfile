@@ -18,7 +18,7 @@ gem 'rails', '3.0.19'
 
 group :production do
 # gem 'thin'
-# gem 'pg'
+  gem 'pg'
 end
 
 group :development, :test do

@@ -42,6 +42,7 @@ GEM
     mime-types (1.19)
     mocha (0.9.8)
       rake
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.2.6)
     rack-mount (0.6.14)
@@ -78,6 +79,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (>= 1.3.0.pre.2)
   mocha (= 0.9.8)
+  pg
   rails (= 3.0.19)
   rake (= 10.0.3)
   sqlite3
