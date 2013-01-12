@@ -1,15 +1,13 @@
 source :rubygems
 
-# This was on Heroku's Bamboo stack, where only bundler 1.0.7 exists.
+# Previously, this was on Heroku's Bamboo stack, where only bundler 1.0.7 exists.
 # ruby '1.9.2'
 # gem 'bundler', '>=1.0.7'
 
-# ruby '1.9.3'
+# ruby '1.9.3' # Gives an error message.
 ruby '1.9.2'
 gem 'bundler', '>=1.3.0.pre.2'
 
-# mdb August 9, 2011: 'heroku rake db:migrate' gave: 'uninitialized constant Rake:DSL'. Fix with: gem 'rake', '0.8.7' per:
-# https://twitter.com/dhh/statuses/71966528744071169?_escaped_fragment_=/dhh/status/71966528744071169#!/dhh/status/71966528744071169
 gem 'rake', '10.0.3'
 gem 'rails', '3.0.19'
 
@@ -18,7 +16,7 @@ gem 'rails', '3.0.19'
 
 group :production do
 # gem 'thin'
-  gem 'pg'
+  gem 'pg' # Necessary for Heroku Cedar.
 end
 
 group :development, :test do
