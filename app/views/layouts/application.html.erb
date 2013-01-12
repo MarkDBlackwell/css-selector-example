@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CssSelector</title>
+  <%= render :partial => 'application/scripts' -%>
+  <%= render :partial => 'application/styles' -%>
+</head>
+<body>
+  <%= render :partial => 'application/messages' -%>
+  <%= render :partial => 'application/buttons' -%>
+  <%= render :partial => 'simplest/all_tags' -%>
+<!--Action content-->
+  <%= content_tag 'div', yield, :class => 'action-content' -%>
+</body>
+</html>

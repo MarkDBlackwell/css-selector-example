@@ -24,5 +24,4 @@ class ActiveSupport::TestCase
     f.print a.first
     f.close
   end
-
 end
