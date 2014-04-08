@@ -1,12 +1,10 @@
-source :rubygems
+source 'https://rubygems.org'
 
 # Previously, this was on Heroku's Bamboo stack, where only bundler 1.0.7 exists.
-# ruby '1.9.2'
-# gem 'bundler', '>=1.0.7'
 
-# ruby '1.9.3' # Gives an error message.
+## ruby '1.9.3' gives an error message.
 ruby '1.9.2'
-gem 'bundler', '>=1.3.0.pre.2'
+gem 'bundler', '=1.5.2'
 
 gem 'rake', '10.0.3'
 gem 'rails', '3.0.19'
